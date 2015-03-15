@@ -81,7 +81,7 @@ class HomeController extends Controller {
 			'Toby' => [
 				'Snakes on a Plane' => 4.5,
 				'You, Me and Dupree' => 1.0,
-				'Superman Returns' =>4.0
+				'Superman Returns' =>4.0,
 			],
 			'Versh' => [
 				'Lady in the Water' => 3.0,
@@ -91,6 +91,8 @@ class HomeController extends Controller {
 		];
 
 		//echo $distanceHelper->sim_pearson($critics, 'Toby', 'Versh').' - '.$distanceHelper->sim_distance($critics, 'Toby', 'Versh').'<br>';
+
+		var_dump($distanceHelper->topMatches($critics, 'Toby', 9, 'sim_pearson'));
 
 		var_dump($distanceHelper->sim_pearson($critics, 'Toby', 'Versh'));
 		var_dump($distanceHelper->sim_pearson($critics, 'Toby', 'Jack Matthews'));

@@ -2,6 +2,38 @@
 
 class DistanceHelper
 {
+    /**
+     * Получить рекомендации для заданного человека, пользуясь взвешенным средним
+     * оценок, данных всеми остальными пользователями
+     */
+    public function getRecommendations($prefs,$person,$similarity='sim_pearson'){
+
+    }
+
+    /**
+     * Возвращает список наилучших соответствий для человека из словаря prefs.
+     * Количество результатов в списке и функция подобия – необязательные
+     * параметры.
+     */
+    public function topMatches($prefs, $person, $n=5, $similarity = 'sim_pearson'){
+
+        $topMatches = [];
+
+        foreach($prefs as $person_item=>$items){
+
+            if($person_item == $person)
+                continue;
+
+            $topMatches[$person_item] = $this->$similarity($prefs, $person, $person_item);
+        }
+
+        // отсортировать список по убыванию оценок
+
+        arsort($topMatches);
+
+        return array_slice($topMatches, 0, $n);
+    }
+
 
     /**
      * Возвращает оценку подобия person1 и person2 на основе расстояния
