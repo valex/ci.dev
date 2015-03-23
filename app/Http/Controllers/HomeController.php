@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\CI\Helpers\DistanceHelper;
+use Tr0n\Laravelicious\Laravelicious;
 
 class HomeController extends Controller {
 
@@ -23,6 +24,16 @@ class HomeController extends Controller {
 	public function __construct()
 	{
 		//$this->middleware('auth');
+	}
+
+	public function delicious(){
+
+		//https://github.com/SciDevs/delicious-api/blob/master/api/posts.md#v1postsget
+
+		$laravelicious = new Laravelicious();
+		$laravelicious->setUserPassword('webdevua', 'rMlpQkLF11O2');
+
+		var_dump($laravelicious->get(['tags'=>['programming']]));
 	}
 
 	/**

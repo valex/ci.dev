@@ -13,6 +13,7 @@
 
 Route::get('/', 'HomeController@index');
 Route::get('recomendation', 'HomeController@recomendation');
+Route::get('delicious', 'HomeController@delicious');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
