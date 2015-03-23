@@ -90,9 +90,14 @@ class HomeController extends Controller {
 			],
 		];
 
+		$movies = $distanceHelper->transformPrefs($critics);
+
+		//var_dump($distanceHelper->topMatches($movies,'Superman Returns'));
+		var_dump($distanceHelper->getRecommendations($movies,'Just My Luck'));
+
 		//echo $distanceHelper->sim_pearson($critics, 'Toby', 'Versh').' - '.$distanceHelper->sim_distance($critics, 'Toby', 'Versh').'<br>';
 
-		var_dump($distanceHelper->getRecommendations($critics, 'Toby', 'sim_pearson'));
+		//var_dump($distanceHelper->getRecommendations($critics, 'Toby', 'sim_pearson'));
 
 		//var_dump($distanceHelper->topMatches($critics, 'Toby', 9, 'sim_pearson'));
 

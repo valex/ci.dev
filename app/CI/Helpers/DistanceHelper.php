@@ -2,6 +2,29 @@
 
 class DistanceHelper
 {
+
+//def transformPrefs(prefs):
+//result={}
+//for person in prefs:
+//    for item in prefs[person]:
+//result.setdefault(item,{})
+//# Обменять местами человека и предмет
+//result[item][person]=prefs[person][item]
+//return result
+
+    public function transformPrefs($prefs){
+        $results = [];
+
+        foreach($prefs as $person => $items){
+            foreach($items as $item => $rating){
+                # Обменять местами человека и предмет
+                $results[$item][$person] = $rating;
+            }
+        }
+
+        return $results;
+    }
+
     /**
      * Получить рекомендации для заданного человека, пользуясь взвешенным средним
      * оценок, данных всеми остальными пользователями
