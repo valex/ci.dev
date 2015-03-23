@@ -8,6 +8,46 @@ class DistanceHelper
      */
     public function getRecommendations($prefs,$person,$similarity='sim_pearson'){
 
+        $totals = [];
+        $simSums = [];
+
+
+        foreach($prefs as $otherPerson=>$items){
+            // сравнивать меня с собой же не нужно
+            if($otherPerson == $person)
+                continue;
+
+            $sim = $this->$similarity($prefs, $person, $otherPerson);
+
+            // игнорировать нулевые и отрицательные оценки
+            if($sim <= 0)
+                continue;
+
+            foreach($prefs[$otherPerson] as $item=>$rating){
+
+                // оценивать только фильмы, которые я еще не смотрел
+                if( ! array_key_exists($item, $prefs[$person]) || $prefs[$person][$item] == 0.0){
+                    // Коэффициент подобия * Оценка
+                    if( ! isset($totals[$item])) $totals[$item] = 0;
+                    //totals[item]+=prefs[other][item]*sim
+                    $totals[$item] += $rating * $sim;
+
+                    // Сумма коэффициентов подобия
+                    if( ! isset($simSums[$item])) $simSums[$item] = 0;
+                    $simSums[$item]+=$sim;
+                }
+            }
+        }
+
+        // Создать нормализованный список
+        foreach($totals as $item=>$total){
+            $rankings[$item] = $total / $simSums[$item];
+
+        }
+
+        arsort($rankings);
+
+        return $rankings;
     }
 
     /**

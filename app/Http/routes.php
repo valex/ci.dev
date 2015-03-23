@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'HomeController@index');
+Route::get('recomendation', 'HomeController@recomendation');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

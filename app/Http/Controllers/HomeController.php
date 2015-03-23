@@ -30,7 +30,7 @@ class HomeController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index(DistanceHelper $distanceHelper)
+	public function recomendation(DistanceHelper $distanceHelper)
 	{
 
 		$critics = [
@@ -92,8 +92,11 @@ class HomeController extends Controller {
 
 		//echo $distanceHelper->sim_pearson($critics, 'Toby', 'Versh').' - '.$distanceHelper->sim_distance($critics, 'Toby', 'Versh').'<br>';
 
-		var_dump($distanceHelper->topMatches($critics, 'Toby', 9, 'sim_pearson'));
+		var_dump($distanceHelper->getRecommendations($critics, 'Toby', 'sim_pearson'));
 
+		//var_dump($distanceHelper->topMatches($critics, 'Toby', 9, 'sim_pearson'));
+
+		/*
 		var_dump($distanceHelper->sim_pearson($critics, 'Toby', 'Versh'));
 		var_dump($distanceHelper->sim_pearson($critics, 'Toby', 'Jack Matthews'));
 		var_dump($distanceHelper->sim_pearson($critics, 'Toby', 'Toby'));
@@ -118,6 +121,7 @@ class HomeController extends Controller {
 		var_dump($distanceHelper->sim_distance($critics, 'Lisa Rose', 'Jack Matthews'));
 		var_dump($distanceHelper->sim_distance($critics, 'Lisa Rose', 'Toby'));
 		var_dump($distanceHelper->sim_distance($critics, 'Lisa Rose', 'Versh'));
+		*/
 
 		return view('home');
 	}
