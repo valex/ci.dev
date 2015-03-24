@@ -19,6 +19,7 @@ class LastfmArtist extends Model {
     protected $fillable = [
         'name',
         'mbid',
+        'url'
     ];
 
 }

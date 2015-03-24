@@ -35,7 +35,7 @@ var_dump($popular);exit;
 
         $country = strtolower($country);
 
-        $url = 'http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country='.$country.'&api_key='.$this->api_key.'&format=json&limit=10';
+        $url = 'http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country='.$country.'&api_key='.$this->api_key.'&format=json&limit=999';
 
         $res = $this->client->get($url);
 

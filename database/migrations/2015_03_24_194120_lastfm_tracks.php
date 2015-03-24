@@ -16,6 +16,7 @@ class LastfmTracks extends Migration {
 		{
 			$table->engine = "MyISAM";
 			$table->increments('id');
+			$table->integer('lastfm_artist_id');
 			$table->string('mbid');
 			$table->string('name');
 			$table->string('url');

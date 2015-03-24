@@ -21,4 +21,8 @@ class LastfmTrack extends Model {
         'mbid',
     ];
 
+    public function artist()
+    {
+        return $this->belongsTo('App\LastfmArtist');
+    }
 }
