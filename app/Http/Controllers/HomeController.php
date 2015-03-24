@@ -1,8 +1,7 @@
 <?php namespace App\Http\Controllers;
 
-use App\CI\Api\Delicious;
+use App\CI\Api\Lastfm;
 use App\CI\Helpers\DistanceHelper;
-use Tr0n\Laravelicious\Laravelicious;
 
 class HomeController extends Controller {
 
@@ -27,12 +26,15 @@ class HomeController extends Controller {
 		//$this->middleware('auth');
 	}
 
-	public function delicious(){
+	public function lastfm(){
 
 		//https://github.com/SciDevs/delicious-api/blob/master/api/posts.md#v1postsget
-		$delicious = new Delicious();
+		$lastfm = new Lastfm();
 
-		$delicious->getPopular(['us']);
+		$userDict  = $lastfm->initializeUserDict('russia');
+
+		var_dump($userDict);
+
 	}
 
 	/**

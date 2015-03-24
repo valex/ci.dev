@@ -3,14 +3,8 @@
 class DistanceHelper
 {
 
-//def transformPrefs(prefs):
-//result={}
-//for person in prefs:
-//    for item in prefs[person]:
-//result.setdefault(item,{})
-//# Обменять местами человека и предмет
-//result[item][person]=prefs[person][item]
-//return result
+
+
 
     public function transformPrefs($prefs){
         $results = [];

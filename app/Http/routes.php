@@ -13,7 +13,7 @@
 
 Route::get('/', 'HomeController@index');
 Route::get('recomendation', 'HomeController@recomendation');
-Route::get('delicious', 'HomeController@delicious');
+Route::get('lastfm', 'HomeController@lastfm');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
