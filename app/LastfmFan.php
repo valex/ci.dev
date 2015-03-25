@@ -2,14 +2,21 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class LastfmUser extends Model {
+class LastfmFan extends Model {
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'lastfm_users';
+    protected $table = 'lastfm_fans';
+
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -17,12 +24,8 @@ class LastfmUser extends Model {
      * @var array
      */
     protected $fillable = [
-        'name',
-        'url',
+        'lastfm_track_id',
+        'lastfm_user_id',
     ];
 
-    public function favtracks()
-    {
-        return $this->belongsToMany('App\LastfmTrack', 'lastfm_fans', 'user_id', 'track_id');
-    }
 }

@@ -16,6 +16,7 @@ Route::get('recomendation', 'HomeController@recomendation');
 Route::get('lastfm', 'HomeController@lastfm');
 
 Route::get('lastfm/update', 'LastfmController@updateDbWithPopular');
+Route::get('lastfm/updateFans', 'LastfmController@updateDbWithFans');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

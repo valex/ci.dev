@@ -12,18 +12,28 @@ class Lastfm
     }
 
 
-    public function initializeUserDict($country){
+    public function initializeUserDict(){
+
         $userDict = [];
 
-        $populars  = $this->getPopular($country);
+        $fmusers = \App\LastfmUser::with('favtracks')->take(500)->get();
+        $fmtracks = \App\LastfmTrack::all();
 
-        foreach($populars as $popular){
-var_dump($popular);exit;
-            $fans = $this->getFans($popular['mbid']);
+        $allTracksDict = [];
+        foreach($fmtracks as $fmtrack){
+            $allTracksDict[$fmtrack->mbid] = 0.0;
+        }
 
-            foreach($fans as $fan){
-                $userDict[$fan['name']] = [];
+        foreach($fmusers as $fmuser){
+
+            $favtracks = $fmuser->favtracks;
+
+            $userDict[$fmuser->name] = $allTracksDict;
+
+            foreach($favtracks as $favtrack){
+                $userDict[$fmuser->name][$favtrack->mbid] = 1.0;
             }
+
         }
 
         return $userDict;

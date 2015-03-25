@@ -16,25 +16,31 @@ class HomeController extends Controller {
 	|
 	*/
 
+	protected $distanceHelper;
+
 	/**
 	 * Create a new controller instance.
 	 *
 	 * @return void
 	 */
-	public function __construct()
+	public function __construct(DistanceHelper $distanceHelper)
 	{
-		//$this->middleware('auth');
+		$this->distanceHelper = $distanceHelper;
 	}
 
 	public function lastfm(){
+		set_time_limit ( 300 );
 
 		//https://github.com/SciDevs/delicious-api/blob/master/api/posts.md#v1postsget
 		$lastfm = new Lastfm();
 
-		$userDict  = $lastfm->initializeUserDict('russia');
+		$userDict  = $lastfm->initializeUserDict();
 
-		var_dump($userDict);
 
+
+		$userDictTrans = $this->distanceHelper->transformPrefs($userDict);
+
+		var_dump($userDictTrans);
 	}
 
 	/**

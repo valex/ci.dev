@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class LastfmUsers extends Migration {
+class LastfmFans extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,15 +12,12 @@ class LastfmUsers extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('lastfm_users', function(Blueprint $table)
+		Schema::create('lastfm_fans', function(Blueprint $table)
 		{
 			$table->engine = "MyISAM";
 			$table->increments('id');
-			$table->string('name');
-			$table->string('url');
-			$table->timestamps();
-
-			$table->unique('name');
+			$table->integer('track_id');
+			$table->integer('user_id');
 		});
 	}
 
@@ -31,7 +28,7 @@ class LastfmUsers extends Migration {
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('lastfm_users');
+		Schema::dropIfExists('lastfm_fans');
 	}
 
 }

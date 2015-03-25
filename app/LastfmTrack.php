@@ -17,12 +17,19 @@ class LastfmTrack extends Model {
      * @var array
      */
     protected $fillable = [
+        'lastfm_artist_id',
         'name',
         'mbid',
+        'url'
     ];
 
     public function artist()
     {
         return $this->belongsTo('App\LastfmArtist');
+    }
+
+    public function fans()
+    {
+        return $this->belongsToMany('App\LastfmUser', 'lastfm_fans', 'track_id', 'user_id');
     }
 }
